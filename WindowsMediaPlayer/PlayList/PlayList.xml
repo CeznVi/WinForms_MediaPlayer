@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Playlists>
+	<Playlist Name ="First">
+		<MediaRecord Path ="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WindowsMedia Player\WindowsMediaPlayer\Media\Video1.mp4"/>
+		<MediaRecord Path ="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WindowsMedia Player\WindowsMediaPlayer\Media\Video2.mp4"/>
+		<MediaRecord Path ="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WindowsMedia Player\WindowsMediaPlayer\Media\Video3.mp4"/>
+
+
+	</Playlist>
+	<Playlist Name ="Second">
+		<MediaRecord Path ="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WindowsMedia Player\WindowsMediaPlayer\Media\Video1.mp4"/>
+		<MediaRecord Path ="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WindowsMedia Player\WindowsMediaPlayer\Media\Video2.mp4"/>
+
+	</Playlist>
+	<Playlist Name ="Garbage">
+
+	</Playlist>
+	
+</Playlists>
