@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F654F5D-0661-4083-9843-6EF12F1BAF84}</ProjectGuid>
+    <ProjectGuid>{5C31344F-63BE-4742-A50E-C2E2CCDBE964}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsMediaPlayer</RootNamespace>
-    <AssemblyName>WindowsMediaPlayer</AssemblyName>
+    <RootNamespace>WinPlayer</RootNamespace>
+    <AssemblyName>WinPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,23 +52,32 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayListForm.cs">
+    <Compile Include="NewEditPlayListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlayListForm.Designer.cs">
-      <DependentUpon>PlayListForm.cs</DependentUpon>
+    <Compile Include="NewEditPlayListForm.Designer.cs">
+      <DependentUpon>NewEditPlayListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayList\MediaRecord.cs" />
-    <Compile Include="PlayList\PlayList.cs" />
-    <Compile Include="PlayList\PlayListController.cs" />
-    <Compile Include="PlayList\PlayListXmlMap.cs" />
+    <Compile Include="PlayListsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayListsForm.Designer.cs">
+      <DependentUpon>PlayListsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Playlist\MediaRecord.cs" />
+    <Compile Include="Playlist\PlayList.cs" />
+    <Compile Include="Playlist\PlayListController.cs" />
+    <Compile Include="Playlist\PlayListXMLMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayListForm.resx">
-      <DependentUpon>PlayListForm.cs</DependentUpon>
+    <EmbeddedResource Include="NewEditPlayListForm.resx">
+      <DependentUpon>NewEditPlayListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayListsForm.resx">
+      <DependentUpon>PlayListsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,7 +121,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PlayList\PlayList.xml" />
+    <Content Include="Playlist\PlayList.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

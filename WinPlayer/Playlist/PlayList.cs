@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsMediaPlayer.PlayList
+namespace WinPlayer.Playlist
 {
     public class PlayList
     {
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
         public List<MediaRecord> MediaRecords { get; set; }
 
@@ -16,6 +16,5 @@ namespace WindowsMediaPlayer.PlayList
         {
             return Name;
         }
-
     }
 }
