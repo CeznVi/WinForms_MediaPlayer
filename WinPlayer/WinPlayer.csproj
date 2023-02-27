@@ -64,6 +64,7 @@
     <Compile Include="PlayListsForm.Designer.cs">
       <DependentUpon>PlayListsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Playlist\GetPath.cs" />
     <Compile Include="Playlist\MediaFilter.cs" />
     <Compile Include="Playlist\MediaRecord.cs" />
     <Compile Include="Playlist\PlayList.cs" />

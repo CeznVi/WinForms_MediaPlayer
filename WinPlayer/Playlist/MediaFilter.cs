@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinPlayer.Playlist
 {
-    class MediaFilter
+    static class MediaFilter
     {
         /// <summary>
         /// Статический масив имен аудиофайлов
@@ -38,10 +38,10 @@ namespace WinPlayer.Playlist
 
         public static string GetOpenFileDialogFilter()
         {
-            return "Audio|" + "*." +
-                String.Join("*.", nameAudioFile.Select(x => x + ";").ToArray()) +
-                "|Video|" + "*." + String.Join("*.", nameVideoFile.Select(x => x + ";").ToArray()) +
-                "|AllMedia|" + "*." + String.Join("*.", nameAllMediaFile.Select(x => x + ";").ToArray());
+            return
+                "Video|*." + String.Join("*.", nameVideoFile.Select(x => x + ";").ToArray()) +
+                "|Audio|*." + String.Join("*.", nameAudioFile.Select(x => x + ";").ToArray()) +
+                "|AllMedia|*." + String.Join("*.", nameAllMediaFile.Select(x => x + ";").ToArray());
         }
     }
 }
