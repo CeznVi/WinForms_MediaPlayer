@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using WinPlayer.Playlist;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 
 namespace WinPlayer
@@ -190,7 +191,6 @@ namespace WinPlayer
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
-                //openFileDialog.Filter = "All Media Files|*.wav;*.aac;*.wma;*.wmv;*.avi;*.mpg;*.mpeg;*.m1v;*.mp2;*.mp3;*.mpa;*.mpe;*.m3u;*.mp4;*.mov;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.cda;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi;*.mkv;*.WAV;*.AAC;*.WMA;*.WMV;*.AVI;*.MPG;*.MPEG;*.M1V;*.MP2;*.MP3;*.MPA;*.MPE;*.M3U;*.MP4;*.MOV;*.3G2;*.3GP2;*.3GP;*.3GPP;*.M4A;*.CDA;*.AIF;*.AIFC;*.AIFF;*.MID;*.MIDI;*.RMI;*.MKV"; 
                 //Директория которая откроется по умолчанию
                 openFileDialog.InitialDirectory = @"C:\Users\Public\Music";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -198,7 +198,6 @@ namespace WinPlayer
                     PlayList tmp = ((PlayList)toolStripComboBoxPlayList.SelectedItem);
                     tmp.MediaRecords.Add(new MediaRecord(openFileDialog.FileName));
                     listBoxMediaRecords.Items.Add(tmp.MediaRecords.Last());
-
                     _parentForm.PlayListsController.AddNewMediaRecord(tmp.MediaRecords.Last(), tmp);
                 }
             }
@@ -211,7 +210,26 @@ namespace WinPlayer
 
         private void buttonRemoveMediaRecord_Click(object sender, EventArgs e)
         {
+            if (toolStripComboBoxPlayList.SelectedItem != null)
+            {
+                if(listBoxMediaRecords.SelectedItem != null) 
+                {
+                    string question = "Вы действительно желеаете удалить из плейлиста \n" 
+                                        + listBoxMediaRecords.SelectedItem.ToString();
+                    string caption = "Удаление записи из плейлиста";
 
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result;
+
+                    result = MessageBox.Show(question, caption, buttons);
+
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        // Closes the parent form.
+                        this.Close();
+                    }
+                }
+            }
         }
     }
 }

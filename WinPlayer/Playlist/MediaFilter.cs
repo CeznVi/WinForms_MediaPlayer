@@ -8,24 +8,40 @@ namespace WinPlayer.Playlist
 {
     class MediaFilter
     {
-        static readonly string[] nameMediaFile =
+        /// <summary>
+        /// Статический масив имен аудиофайлов
+        /// </summary>
+        static readonly string[] nameAudioFile =
         {
-            "wav", "acc", "wma", "wmv", "avi", "mpg", "mpeg", "m1v", "mp2", "mp3", "mpa", "mpe", "m3u",
-            "mp4", "mov", "3gp", "3gp2","3gpp","m4a","cda","aif", "aifc", "aiff", "mid", "midi","rmi",
-            "mkv", "WAV", "AAC", "WMA", "WMV", "AVI", "MPG", "MPEG", "M1V", "MP2", "MP3", "MPA", "MPE",
-            "M3U","MP4","MOV","3G2","3GP2", "3GP","3GPP","M4A", "CDA", "AIF", "AIFC", "AIFF", "MID",
-            "MIDI", "RMI" ,"MKV"
+            "wav", "acc", "wma", "wmv", "mp3", "mpa", "mpe", "m4a", "mid", "midi"
+        };
+        /// <summary>
+        /// Статический масив имен видеофайлов
+        /// </summary>
+        static readonly string[] nameVideoFile =
+        {
+            "avi", "mpg", "mpeg", "m1v", "mp4", "mov", "3gp", "3gp2","3gpp", "mkv"
+        };
+        /// <summary>
+        /// Статический масив имен медииофайлов (аудио+видео)
+        /// </summary>
+        static readonly string[] nameAllMediaFile =
+        {
+            "wav", "acc", "wma", "wmv", "mp3", "mpa", "mpe", "m4a", "mid", "midi",
+            "avi", "mpg", "mpeg", "m1v", "mp4", "mov", "3gp", "3gp2","3gpp", "mkv"
         };
 
         public static bool IsMediaFile(string path)
         {
-            
-            return true;
+           return true;
         }
 
         public static string GetOpenFileDialogFilter()
         {
-            return String.Join("*.", nameMediaFile); 
+            return "Audio|" + "*." +
+                String.Join("*.", nameAudioFile.Select(x => x + ";").ToArray()) +
+                "|Video|" + "*." + String.Join("*.", nameVideoFile.Select(x => x + ";").ToArray()) +
+                "|AllMedia|" + "*." + String.Join("*.", nameAllMediaFile.Select(x => x + ";").ToArray());
         }
     }
 }
