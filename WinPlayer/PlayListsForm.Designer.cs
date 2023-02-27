@@ -31,19 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayListsForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.плейлистыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripPlaylists = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonRemovePlayList = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonEditPlayList = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCreatePlayList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEditPlayList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRemovePlayList = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxPlayList = new System.Windows.Forms.ToolStripComboBox();
-            this.плейлистыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMediaControls = new System.Windows.Forms.Panel();
-            this.listBoxMediaRecords = new System.Windows.Forms.ListBox();
-            this.buttonAddMediaRecord = new System.Windows.Forms.Button();
-            this.buttonEditMediaRecord = new System.Windows.Forms.Button();
             this.buttonRemoveMediaRecord = new System.Windows.Forms.Button();
+            this.buttonEditMediaRecord = new System.Windows.Forms.Button();
+            this.buttonAddMediaRecord = new System.Windows.Forms.Button();
+            this.listBoxMediaRecords = new System.Windows.Forms.ListBox();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripPlaylists.SuspendLayout();
@@ -66,6 +66,12 @@
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // плейлистыToolStripMenuItem
+            // 
+            this.плейлистыToolStripMenuItem.Name = "плейлистыToolStripMenuItem";
+            this.плейлистыToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.плейлистыToolStripMenuItem.Text = "Плейлисты";
             // 
             // statusStrip
             // 
@@ -96,17 +102,19 @@
             this.toolStripPlaylists.TabIndex = 2;
             this.toolStripPlaylists.Text = "toolStrip1";
             // 
-            // toolStripButtonRemovePlayList
+            // toolStripButtonCreatePlayList
             // 
-            this.toolStripButtonRemovePlayList.AutoSize = false;
-            this.toolStripButtonRemovePlayList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemovePlayList.BackgroundImage")));
-            this.toolStripButtonRemovePlayList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStripButtonRemovePlayList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonRemovePlayList.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRemovePlayList.Margin = new System.Windows.Forms.Padding(3);
-            this.toolStripButtonRemovePlayList.Name = "toolStripButtonRemovePlayList";
-            this.toolStripButtonRemovePlayList.Size = new System.Drawing.Size(40, 40);
-            this.toolStripButtonRemovePlayList.Text = "toolStripButton1";
+            this.toolStripButtonCreatePlayList.AutoSize = false;
+            this.toolStripButtonCreatePlayList.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripButtonCreatePlayList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePlayList.BackgroundImage")));
+            this.toolStripButtonCreatePlayList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStripButtonCreatePlayList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCreatePlayList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCreatePlayList.Margin = new System.Windows.Forms.Padding(3);
+            this.toolStripButtonCreatePlayList.Name = "toolStripButtonCreatePlayList";
+            this.toolStripButtonCreatePlayList.Size = new System.Drawing.Size(40, 40);
+            this.toolStripButtonCreatePlayList.Text = "Создать плейлист";
+            this.toolStripButtonCreatePlayList.Click += new System.EventHandler(this.toolStripButtonCreatePlayList_Click);
             // 
             // toolStripButtonEditPlayList
             // 
@@ -118,21 +126,20 @@
             this.toolStripButtonEditPlayList.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripButtonEditPlayList.Name = "toolStripButtonEditPlayList";
             this.toolStripButtonEditPlayList.Size = new System.Drawing.Size(40, 40);
-            this.toolStripButtonEditPlayList.Text = "toolStripButton1";
+            this.toolStripButtonEditPlayList.Text = "Переименовать плейлист";
             this.toolStripButtonEditPlayList.Click += new System.EventHandler(this.toolStripButtonEditPlayList_Click);
             // 
-            // toolStripButtonCreatePlayList
+            // toolStripButtonRemovePlayList
             // 
-            this.toolStripButtonCreatePlayList.AutoSize = false;
-            this.toolStripButtonCreatePlayList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePlayList.BackgroundImage")));
-            this.toolStripButtonCreatePlayList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStripButtonCreatePlayList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCreatePlayList.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCreatePlayList.Margin = new System.Windows.Forms.Padding(3);
-            this.toolStripButtonCreatePlayList.Name = "toolStripButtonCreatePlayList";
-            this.toolStripButtonCreatePlayList.Size = new System.Drawing.Size(40, 40);
-            this.toolStripButtonCreatePlayList.Text = "toolStripButton1";
-            this.toolStripButtonCreatePlayList.Click += new System.EventHandler(this.toolStripButtonCreatePlayList_Click);
+            this.toolStripButtonRemovePlayList.AutoSize = false;
+            this.toolStripButtonRemovePlayList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRemovePlayList.BackgroundImage")));
+            this.toolStripButtonRemovePlayList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStripButtonRemovePlayList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRemovePlayList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRemovePlayList.Margin = new System.Windows.Forms.Padding(3);
+            this.toolStripButtonRemovePlayList.Name = "toolStripButtonRemovePlayList";
+            this.toolStripButtonRemovePlayList.Size = new System.Drawing.Size(40, 40);
+            this.toolStripButtonRemovePlayList.Text = "Удалить плейлист";
             // 
             // toolStripComboBoxPlayList
             // 
@@ -140,12 +147,6 @@
             this.toolStripComboBoxPlayList.Name = "toolStripComboBoxPlayList";
             this.toolStripComboBoxPlayList.Size = new System.Drawing.Size(121, 46);
             this.toolStripComboBoxPlayList.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxPlayList_SelectedIndexChanged);
-            // 
-            // плейлистыToolStripMenuItem
-            // 
-            this.плейлистыToolStripMenuItem.Name = "плейлистыToolStripMenuItem";
-            this.плейлистыToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
-            this.плейлистыToolStripMenuItem.Text = "Плейлисты";
             // 
             // panelMediaControls
             // 
@@ -160,15 +161,29 @@
             this.panelMediaControls.Size = new System.Drawing.Size(70, 381);
             this.panelMediaControls.TabIndex = 3;
             // 
-            // listBoxMediaRecords
+            // buttonRemoveMediaRecord
             // 
-            this.listBoxMediaRecords.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxMediaRecords.FormattingEnabled = true;
-            this.listBoxMediaRecords.Location = new System.Drawing.Point(0, 70);
-            this.listBoxMediaRecords.Name = "listBoxMediaRecords";
-            this.listBoxMediaRecords.Size = new System.Drawing.Size(314, 381);
-            this.listBoxMediaRecords.TabIndex = 4;
-            this.listBoxMediaRecords.DoubleClick += new System.EventHandler(this.listBoxMediaRecords_DoubleClick);
+            this.buttonRemoveMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonRemoveMediaRecord.BackgroundImage")));
+            this.buttonRemoveMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonRemoveMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonRemoveMediaRecord.Location = new System.Drawing.Point(3, 131);
+            this.buttonRemoveMediaRecord.Name = "buttonRemoveMediaRecord";
+            this.buttonRemoveMediaRecord.Size = new System.Drawing.Size(64, 64);
+            this.buttonRemoveMediaRecord.TabIndex = 2;
+            this.buttonRemoveMediaRecord.UseVisualStyleBackColor = true;
+            this.buttonRemoveMediaRecord.Click += new System.EventHandler(this.buttonRemoveMediaRecord_Click);
+            // 
+            // buttonEditMediaRecord
+            // 
+            this.buttonEditMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonEditMediaRecord.BackgroundImage")));
+            this.buttonEditMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonEditMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonEditMediaRecord.Location = new System.Drawing.Point(3, 67);
+            this.buttonEditMediaRecord.Name = "buttonEditMediaRecord";
+            this.buttonEditMediaRecord.Size = new System.Drawing.Size(64, 64);
+            this.buttonEditMediaRecord.TabIndex = 1;
+            this.buttonEditMediaRecord.UseVisualStyleBackColor = true;
+            this.buttonEditMediaRecord.Click += new System.EventHandler(this.buttonEditMediaRecord_Click);
             // 
             // buttonAddMediaRecord
             // 
@@ -182,27 +197,15 @@
             this.buttonAddMediaRecord.UseVisualStyleBackColor = true;
             this.buttonAddMediaRecord.Click += new System.EventHandler(this.buttonAddMediaRecord_Click);
             // 
-            // buttonEditMediaRecord
+            // listBoxMediaRecords
             // 
-            this.buttonEditMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonEditMediaRecord.BackgroundImage")));
-            this.buttonEditMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonEditMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonEditMediaRecord.Location = new System.Drawing.Point(3, 67);
-            this.buttonEditMediaRecord.Name = "buttonEditMediaRecord";
-            this.buttonEditMediaRecord.Size = new System.Drawing.Size(64, 64);
-            this.buttonEditMediaRecord.TabIndex = 1;
-            this.buttonEditMediaRecord.UseVisualStyleBackColor = true;
-            // 
-            // buttonRemoveMediaRecord
-            // 
-            this.buttonRemoveMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonRemoveMediaRecord.BackgroundImage")));
-            this.buttonRemoveMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonRemoveMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonRemoveMediaRecord.Location = new System.Drawing.Point(3, 131);
-            this.buttonRemoveMediaRecord.Name = "buttonRemoveMediaRecord";
-            this.buttonRemoveMediaRecord.Size = new System.Drawing.Size(64, 64);
-            this.buttonRemoveMediaRecord.TabIndex = 2;
-            this.buttonRemoveMediaRecord.UseVisualStyleBackColor = true;
+            this.listBoxMediaRecords.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxMediaRecords.FormattingEnabled = true;
+            this.listBoxMediaRecords.Location = new System.Drawing.Point(0, 70);
+            this.listBoxMediaRecords.Name = "listBoxMediaRecords";
+            this.listBoxMediaRecords.Size = new System.Drawing.Size(314, 381);
+            this.listBoxMediaRecords.TabIndex = 4;
+            this.listBoxMediaRecords.DoubleClick += new System.EventHandler(this.listBoxMediaRecords_DoubleClick);
             // 
             // PlayListsForm
             // 

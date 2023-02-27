@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace WinPlayer.Playlist
@@ -11,6 +12,10 @@ namespace WinPlayer.Playlist
     public class PlayListController
     {
         private string _pathToXMLFile;
+
+        private XDocument _xDocument;
+        private XElement _rootElement;
+
         public List<PlayList> PlayLists;
 
         public string PathToXml {
@@ -37,12 +42,12 @@ namespace WinPlayer.Playlist
 
         private void LoadXmlData()
         {
-            XDocument xDocument = XDocument.Load(PathToXml);
+            _xDocument = XDocument.Load(PathToXml);
 
             //получаю доступ к корневому элементу
-            XElement rootElement = xDocument.Element(PlayListXMLMap.Root.ElementName);
+            _rootElement = _xDocument.Element(PlayListXMLMap.Root.ElementName);
 
-            IEnumerable<XElement> playlistElements = rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
+            IEnumerable<XElement> playlistElements = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
 
             foreach (var onePlayList in playlistElements)
             {
@@ -61,7 +66,13 @@ namespace WinPlayer.Playlist
 
         public void AddNewPlayList(PlayList playlist)
         {
-            throw new NotImplementedException();
+            PlayLists.Add(playlist);
+            _rootElement.Add(
+                new XElement(PlayListXMLMap.Root.PlayList.ElementName, 
+                new XAttribute(PlayListXMLMap.Root.PlayList.Attributes.Name, playlist.Name))
+                );
+
+            _xDocument.Save(PathToXml);
         }
         public void RemovePlayList(string playListName)
         {
@@ -69,11 +80,33 @@ namespace WinPlayer.Playlist
         }
         public void RenamePlayList(string oldName, string newName)
         {
-            throw new NotImplementedException();
+            IEnumerable<XElement> playlists = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
+            foreach (XElement item in playlists)
+            {
+                if(item.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value == oldName)
+                {
+                    item.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value = newName;
+                    _xDocument.Save(PathToXml);
+                    return;
+                }
+            }
         }
         public void AddNewMediaRecord(MediaRecord mediaRecord, PlayList playlist)
         {
-            throw new NotImplementedException();
+            IEnumerable<XElement> playlists = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
+            foreach (XElement item in playlists)
+            {
+                if(item.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value == playlist.Name)
+                {
+                    item.Add(new XElement(
+                            PlayListXMLMap.Root.PlayList.MediaRecord.ElementName,
+                            new XAttribute(PlayListXMLMap.Root.PlayList.MediaRecord.Attributes.Path, mediaRecord.Path)
+                            ));
+                    _xDocument.Save(PathToXml);
+                    return;
+                }
+            }
+
         }
         public void RemoveMediaRecord(MediaRecord mediaRecord, PlayList playlist)
         {
