@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using WinPlayer.Playlist;
 
+
 namespace WinPlayer
 {
     public partial class PlayListsForm : Form
@@ -103,22 +104,18 @@ namespace WinPlayer
             NewEditPlayListForm newEditPlayListForm = new NewEditPlayListForm();
             if (newEditPlayListForm.ShowDialog() == DialogResult.OK)
             {
-                ///MessageBox.Show(newEditPlayListForm.PlayListName);
-                ///
                 PlayList tmp = new PlayList();
                 tmp.Name = newEditPlayListForm.PlayListName;
                 tmp.MediaRecords = new List<MediaRecord>();
-
                 _parentForm.PlayListsController.AddNewPlayList(tmp);
 
                 toolStripComboBoxPlayList.Items.Add(tmp);
 
                 плейлистыToolStripMenuItem.DropDownItems.Add(tmp.Name);
-
                 плейлистыToolStripMenuItem.DropDownItems[плейлистыToolStripMenuItem.DropDownItems.Count - 1].Click += Item_Click;
 
-                toolStripComboBoxPlayList.SelectedIndex = toolStripComboBoxPlayList.Items.Count - 1;
 
+                toolStripComboBoxPlayList.SelectedIndex = toolStripComboBoxPlayList.Items.Count - 1;
             }
         }
 
@@ -129,14 +126,7 @@ namespace WinPlayer
                 NewEditPlayListForm newEditPlayListForm = new NewEditPlayListForm(toolStripComboBoxPlayList.SelectedItem.ToString());
                 if (newEditPlayListForm.ShowDialog() == DialogResult.OK)
                 {
-                    ///MessageBox.Show(newEditPlayListForm.PlayListName);
-
-                    //_parentForm.PlayListsController.RenamePlayList(
-                    //    toolStripComboBoxPlayList.Text,
-                    //    newEditPlayListForm.PlayListName
-                    //    );
-                    _parentForm.PlayListsController.RenamePlayList(_currentToolStripMenuItem.Text,
-                                                                    newEditPlayListForm.PlayListName);
+                    _parentForm.PlayListsController.RenamePlayList(_currentToolStripMenuItem.Text, newEditPlayListForm.PlayListName);
 
                     _currentToolStripMenuItem.Text = newEditPlayListForm.PlayListName;
 
@@ -146,29 +136,32 @@ namespace WinPlayer
                     current.Name = newEditPlayListForm.PlayListName;
                     toolStripComboBoxPlayList.Items.Add(current);
                     toolStripComboBoxPlayList.SelectedItem = current;
-
-                    ;
-
-                    
-                    //var lists = _parentForm.PlayListsController.PlayLists;
-
-
-                    //плейлистыToolStripMenuItem.DropDownItems.Clear();
-                    //toolStripComboBoxPlayList.Items.Clear();
-
-                    //foreach (var onePlayList in _parentForm.PlayListsController.PlayLists)
-                    //{
-                    //    плейлистыToolStripMenuItem.DropDownItems.Add(onePlayList.Name);
-                    //    toolStripComboBoxPlayList.Items.Add(onePlayList);
-                    //}
-                    //foreach (ToolStripDropDownItem item in плейлистыToolStripMenuItem.DropDownItems)
-                    //{
-                    //    item.Click += Item_Click;
-                    //}
-
-                    //toolStripComboBoxPlayList.SelectedItem = toolStripComboBoxPlayList.FindString
-                    //    (newEditPlayListForm.PlayListName);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Выберите плейлист для редактирования.", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+
+        private void toolStripButtonRemovePlayList_Click(object sender, EventArgs e)
+        {
+            if (_currentToolStripMenuItem == null)
+            {
+                MessageBox.Show("Выберите плейлист для удаления.", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("Вы действительно хотите удалить плейлист?", "Уведомление", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+
+                PlayList rem = (PlayList)toolStripComboBoxPlayList.SelectedItem;
+                _parentForm.PlayListsController.RemovePlayList(rem.Name);
+                плейлистыToolStripMenuItem.DropDownItems.Remove(_currentToolStripMenuItem);
+                toolStripComboBoxPlayList.Items.Remove(rem);
+                listBoxMediaRecords.Items.Clear();
+                _currentToolStripMenuItem = null;
             }
         }
 
@@ -178,40 +171,21 @@ namespace WinPlayer
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
-                //openFileDialog.Filter = "All Media Files|*.wav;*.aac;*.wma;*.wmv;*.avi;*.mpg;*.mpeg;*.m1v;*.mp2;*.mp3;*.mpa;*.mpe;*.m3u;*.mp4;*.mov;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.cda;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi;*.mkv;*.WAV;*.AAC;*.WMA;*.WMV;*.AVI;*.MPG;*.MPEG;*.M1V;*.MP2;*.MP3;*.MPA;*.MPE;*.M3U;*.MP4;*.MOV;*.3G2;*.3GP2;*.3GP;*.3GPP;*.M4A;*.CDA;*.AIF;*.AIFC;*.AIFF;*.MID;*.MIDI;*.RMI;*.MKV";
-                //openFileDialog.InitialDirectory;
+                //openFileDialog.Filter = "All Media Files|*.wav;*.aac;*.wma;*.wmv;*.avi;*.mpg;*.mpeg;*.m1v;*.mp2;*.mp3;*.mpa;*.mpe;*.m3u;*.mp4;*.mov;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.cda;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi;*.mkv;*.WAV;*.AAC;*.WMA;*.WMV;*.AVI;*.MPG;*.MPEG;*.M1V;*.MP2;*.MP3;*.MPA;*.MPE;*.M3U;*.MP4;*.MOV;*.3G2;*.3GP2;*.3GP;*.3GPP;*.M4A;*.CDA;*.AIF;*.AIFC;*.AIFF;*.MID;*.MIDI;*.RMI;*.MKV"; 
+                //openFileDialog.InitialDirectory
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //MessageBox.Show(openFileDialog.FileName);
                     PlayList tmp = ((PlayList)toolStripComboBoxPlayList.SelectedItem);
                     tmp.MediaRecords.Add(new MediaRecord(openFileDialog.FileName));
                     listBoxMediaRecords.Items.Add(tmp.MediaRecords.Last());
 
                     _parentForm.PlayListsController.AddNewMediaRecord(tmp.MediaRecords.Last(), tmp);
-
                 }
             }
         }
-
         private void buttonEditMediaRecord_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
 
-            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                var allFiles = Directory.GetFiles(folderBrowserDialog.SelectedPath);
-                PlayList tmp =(PlayList)toolStripComboBoxPlayList.SelectedItem;
-
-                foreach (var oneFile in allFiles)
-                {
-                    if(MediaFilter.isMediaFile(oneFile))
-                    {
-                        tmp.MediaRecords.Add(new MediaRecord(oneFile));
-                        listBoxMediaRecords.Items.Add(tmp.MediaRecords.Last());
-                        _parentForm.PlayListsController.AddNewMediaRecord(tmp.MediaRecords.Last(), tmp);
-                    }
-                }    
-            }
         }
 
         private void buttonRemoveMediaRecord_Click(object sender, EventArgs e)

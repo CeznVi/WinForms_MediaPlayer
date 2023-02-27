@@ -140,6 +140,7 @@
             this.toolStripButtonRemovePlayList.Name = "toolStripButtonRemovePlayList";
             this.toolStripButtonRemovePlayList.Size = new System.Drawing.Size(40, 40);
             this.toolStripButtonRemovePlayList.Text = "Удалить плейлист";
+            this.toolStripButtonRemovePlayList.Click += new System.EventHandler(this.toolStripButtonRemovePlayList_Click);
             // 
             // toolStripComboBoxPlayList
             // 
@@ -183,7 +184,6 @@
             this.buttonEditMediaRecord.Size = new System.Drawing.Size(64, 64);
             this.buttonEditMediaRecord.TabIndex = 1;
             this.buttonEditMediaRecord.UseVisualStyleBackColor = true;
-            this.buttonEditMediaRecord.Click += new System.EventHandler(this.buttonEditMediaRecord_Click);
             // 
             // buttonAddMediaRecord
             // 
