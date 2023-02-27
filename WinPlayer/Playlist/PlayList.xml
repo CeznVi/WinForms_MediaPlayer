@@ -8,8 +8,6 @@
   <Playlist Name="Second">
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer\Media\Video1.mp4" />
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer\Media\Video2.mp4" />
-    <MediaRecord Path="D:\Video\Barbarian.2022.HDRip.XviD.Ukr.Eng.UkrSub.SviyDUB.CHAS.UA[Hurtom]_final.avi" />
-    <MediaRecord Path="C:\Users\Admin\Music\Jayz_-_Why_I_love_You_(ringon.site).mp3" />
   </Playlist>
   <Playlist Name="Garbage"></Playlist>
   <Playlist Name="media" />

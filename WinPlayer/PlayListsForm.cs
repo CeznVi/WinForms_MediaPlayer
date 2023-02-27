@@ -217,7 +217,6 @@ namespace WinPlayer
                     string question = "Вы действительно желеаете удалить из плейлиста \n" 
                                         + listBoxMediaRecords.SelectedItem.ToString();
                     string caption = "Удаление записи из плейлиста";
-
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
 
@@ -225,8 +224,12 @@ namespace WinPlayer
 
                     if (result == System.Windows.Forms.DialogResult.Yes)
                     {
-                        // Closes the parent form.
-                        this.Close();
+
+                        _parentForm.PlayListsController.RemoveMediaRecord(
+                                                            (MediaRecord)listBoxMediaRecords.SelectedItem,
+                                                            (PlayList)toolStripComboBoxPlayList.SelectedItem);
+
+                        listBoxMediaRecords.Items.Remove(listBoxMediaRecords.SelectedItem);
                     }
                 }
             }

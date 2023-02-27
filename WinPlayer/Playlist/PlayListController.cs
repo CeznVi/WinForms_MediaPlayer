@@ -102,7 +102,24 @@ namespace WinPlayer.Playlist
         }
         public void RemoveMediaRecord(MediaRecord mediaRecord, PlayList playlist)
         {
-            throw new NotImplementedException();
+            IEnumerable<XElement> playlists = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
+            
+            foreach (XElement item in playlists)
+            {
+                if (item.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value == playlist.Name)
+                {
+                    IEnumerable<XElement> mediaRecords = item.Elements(PlayListXMLMap.Root.PlayList.MediaRecord.ElementName);
+                    foreach (XElement mediaRec in mediaRecords)
+                    {
+                        if (mediaRec.Attribute(PlayListXMLMap.Root.PlayList.MediaRecord.Attributes.Path).Value == mediaRecord.Path)
+                        {
+                            mediaRec.Remove();
+                            _xDocument.Save(PathToXml);
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
         public void RenamePlayList(string oldName, string newName)
