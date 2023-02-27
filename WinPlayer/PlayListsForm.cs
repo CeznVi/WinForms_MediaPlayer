@@ -192,10 +192,7 @@ namespace WinPlayer
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
 
-
-
-                //Директория которая откроется по умолчанию
-                //openFileDialog.InitialDirectory = @"C:\Users\Public\Music";
+                //Директория которая откроется по умолчанию (стоит папка медиа проекта)
                 openFileDialog.InitialDirectory = GetPath.MediaDir();
 
 
