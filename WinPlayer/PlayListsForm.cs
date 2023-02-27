@@ -18,6 +18,7 @@ namespace WinPlayer
     {
         private MainForm _parentForm;
         private ToolStripMenuItem _currentToolStripMenuItem;
+
         public PlayListsForm(MainForm mainForm)
         {
             this._parentForm = mainForm;
@@ -99,6 +100,11 @@ namespace WinPlayer
             _parentForm.MediaPlayer.URL = ((MediaRecord)listBoxMediaRecords.SelectedItem).Path;
         }
 
+        /// <summary>
+        /// Создать плейлист
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonCreatePlayList_Click(object sender, EventArgs e)
         {
             NewEditPlayListForm newEditPlayListForm = new NewEditPlayListForm();
@@ -119,6 +125,11 @@ namespace WinPlayer
             }
         }
 
+        /// <summary>
+        /// Переименовать плейлист
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonEditPlayList_Click(object sender, EventArgs e)
         {
             if (toolStripComboBoxPlayList.SelectedItem != null)
@@ -144,8 +155,11 @@ namespace WinPlayer
             }
         }
 
-
-
+        /// <summary>
+        /// Удалить плейлист
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButtonRemovePlayList_Click(object sender, EventArgs e)
         {
             if (_currentToolStripMenuItem == null)
@@ -165,6 +179,11 @@ namespace WinPlayer
             }
         }
 
+        /// <summary>
+        /// Добавить медиафайл в текущий плейлист
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddMediaRecord_Click(object sender, EventArgs e)
         {
             if (toolStripComboBoxPlayList.SelectedItem != null)
@@ -172,7 +191,8 @@ namespace WinPlayer
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
                 //openFileDialog.Filter = "All Media Files|*.wav;*.aac;*.wma;*.wmv;*.avi;*.mpg;*.mpeg;*.m1v;*.mp2;*.mp3;*.mpa;*.mpe;*.m3u;*.mp4;*.mov;*.3g2;*.3gp2;*.3gp;*.3gpp;*.m4a;*.cda;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi;*.mkv;*.WAV;*.AAC;*.WMA;*.WMV;*.AVI;*.MPG;*.MPEG;*.M1V;*.MP2;*.MP3;*.MPA;*.MPE;*.M3U;*.MP4;*.MOV;*.3G2;*.3GP2;*.3GP;*.3GPP;*.M4A;*.CDA;*.AIF;*.AIFC;*.AIFF;*.MID;*.MIDI;*.RMI;*.MKV"; 
-                //openFileDialog.InitialDirectory
+                //Директория которая откроется по умолчанию
+                openFileDialog.InitialDirectory = @"C:\Users\Public\Music";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     PlayList tmp = ((PlayList)toolStripComboBoxPlayList.SelectedItem);
@@ -183,6 +203,7 @@ namespace WinPlayer
                 }
             }
         }
+
         private void buttonEditMediaRecord_Click(object sender, EventArgs e)
         {
 
